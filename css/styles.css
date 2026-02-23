@@ -56,6 +56,9 @@ a {
 }
 
 .topbar {
+  position: sticky;
+  top: 0.8rem;
+  z-index: 120;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -282,6 +285,8 @@ a {
 
 .project-card,
 .stack-card {
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-lg);
   background: linear-gradient(
@@ -291,13 +296,38 @@ a {
     ),
     var(--surface);
   padding: var(--space-4);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.project-card::after,
+.stack-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    140deg,
+    rgba(145, 165, 255, 0.18) 0%,
+    rgba(145, 165, 255, 0) 48%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease;
 }
 
 .project-card:hover,
-.stack-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(162, 180, 255, 0.4);
+.project-card:focus-within,
+.stack-card:hover,
+.stack-card:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(178, 193, 255, 0.58);
+  box-shadow: 0 18px 34px rgba(8, 12, 26, 0.46);
+}
+
+.project-card:hover::after,
+.project-card:focus-within::after,
+.stack-card:hover::after,
+.stack-card:focus-within::after {
+  opacity: 1;
 }
 
 .project-card h3,
@@ -351,7 +381,7 @@ a {
 }
 
 .project-card:hover .project-preview-image {
-  transform: scale(1.03);
+  transform: scale(1.06);
 }
 
 .project-visual-chat {
@@ -519,8 +549,9 @@ a {
 
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(24px);
+  transition: opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.62s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.is-visible {
@@ -539,8 +570,22 @@ a {
   .text-link,
   .project-card,
   .stack-card,
-  .top-nav a::after {
+  .top-nav a::after,
+  .project-card::after,
+  .stack-card::after {
     transition: none;
+  }
+
+  .project-card:hover,
+  .project-card:focus-within,
+  .stack-card:hover,
+  .stack-card:focus-within {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .project-card:hover .project-preview-image {
+    transform: none;
   }
 }
 

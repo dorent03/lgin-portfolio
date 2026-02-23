@@ -5,9 +5,22 @@ if (yearElement) {
 
 const revealElements = document.querySelectorAll(".reveal");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const staggerRevealElements = document.querySelectorAll(
+  ".project-card.reveal, .stack-card.reveal"
+);
+
+if (!reduceMotion) {
+  staggerRevealElements.forEach((element, index) => {
+    const staggerDelayMs = 80;
+    element.style.transitionDelay = `${index * staggerDelayMs}ms`;
+  });
+}
 
 if (reduceMotion) {
-  revealElements.forEach((element) => element.classList.add("is-visible"));
+  revealElements.forEach((element) => {
+    element.classList.add("is-visible");
+    element.style.transitionDelay = "0ms";
+  });
 } else {
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
