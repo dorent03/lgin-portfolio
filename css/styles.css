@@ -43,6 +43,7 @@ body {
     var(--bg);
   color: var(--text-primary);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -82,14 +83,34 @@ a {
 }
 
 .top-nav a {
+  position: relative;
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
+.top-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8fa6ff, #b4c2ff);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s ease;
+}
+
 .top-nav a:hover {
   color: var(--text-primary);
+}
+
+.top-nav a:hover::after,
+.top-nav a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .layout {
@@ -112,9 +133,28 @@ a {
 }
 
 .hero {
+  position: relative;
   margin-bottom: 2.8rem;
+  isolation: isolate;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -1.1rem -1rem auto;
+  height: 220px;
+  border-radius: 22px;
+  z-index: -1;
+  background: linear-gradient(
+      135deg,
+      rgba(110, 139, 255, 0.18),
+      rgba(110, 139, 255, 0)
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: auto, 26px 26px, 26px 26px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 .badge {
   display: inline-flex;
   align-items: center;
@@ -183,6 +223,7 @@ a {
 
 .btn-secondary:hover {
   border-color: rgba(184, 197, 255, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .metrics {
@@ -270,16 +311,107 @@ a {
   color: var(--text-secondary);
 }
 
+.project-visual {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0.7rem;
+}
+
+.project-visual span {
+  position: relative;
+  z-index: 2;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  color: #dce5ff;
+  background: rgba(10, 14, 26, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.25rem 0.55rem;
+}
+
+.project-preview-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-preview-image {
+  transform: scale(1.03);
+}
+
+.project-visual-chat {
+  background: radial-gradient(circle at 16% 24%, #3657ff 0%, transparent 38%),
+    linear-gradient(150deg, #162143 0%, #0f1b37 52%, #0f1528 100%);
+}
+
+.project-visual-invoice {
+  background: radial-gradient(circle at 84% 20%, #5f89ff 0%, transparent 42%),
+    linear-gradient(160deg, #1a223f 0%, #11192f 52%, #0f1528 100%);
+}
+
+.project-visual-portfolio {
+  background: radial-gradient(circle at 68% 14%, #8c7cff 0%, transparent 42%),
+    linear-gradient(160deg, #181f40 0%, #121930 52%, #0f1528 100%);
+}
+
+.project-highlights {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.project-highlights span {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #d3dcfa;
+  font-size: 0.78rem;
+  padding: 0.22rem 0.58rem;
+}
+
+.project-actions {
+  margin-top: 0.95rem;
+}
+
 .text-link {
   display: inline-flex;
-  margin-top: 1rem;
+  align-items: center;
+  gap: 0.35rem;
   color: #c8d4ff;
   text-decoration: none;
   font-weight: 600;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.text-link::after {
+  content: "\2192";
+  font-size: 0.88rem;
+  transition: transform 0.2s ease;
 }
 
 .text-link:hover {
   color: #ecf0ff;
+  transform: translateX(2px);
+}
+
+.text-link:hover::after {
+  transform: translateX(2px);
 }
 
 .stack-grid {
@@ -385,6 +517,33 @@ a {
   text-align: center;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn,
+  .text-link,
+  .project-card,
+  .stack-card,
+  .top-nav a::after {
+    transition: none;
+  }
+}
+
 @media (max-width: 1160px) {
   .layout {
     grid-template-columns: 1fr;
@@ -426,5 +585,10 @@ a {
   .project-grid,
   .stack-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero::before {
+    height: 170px;
+    inset: -0.8rem -0.65rem auto;
   }
 }

@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <div class="site-shell">
@@ -29,7 +29,7 @@
 
       <div class="layout">
         <main class="content">
-          <section class="hero" aria-label="Einleitung">
+          <section class="hero reveal" aria-label="Einleitung">
             <span class="badge">Available for new projects</span>
             <h1>
               Ich baue moderne Webprodukte<br />
@@ -64,62 +64,116 @@
             </div>
           </section>
 
-          <section id="projects" class="section">
+          <section id="projects" class="section reveal">
             <div class="section-heading">
               <p class="eyebrow">Featured Work</p>
               <h2>Projekte mit echtem Mehrwert</h2>
             </div>
 
             <div class="project-grid">
-              <article class="project-card">
+              <article class="project-card reveal">
+                <div class="project-visual project-visual-chat" aria-hidden="true">
+                  <img
+                    src="./assets/images/projects/chat-web.png"
+                    alt="Screenshot der Chat Web App"
+                    class="project-preview-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span>Live Preview</span>
+                </div>
                 <h3>Chat Web App</h3>
                 <p>
                   Login-basierte Chat-Plattform mit interaktiver UX und klarem,
                   responsivem Interface.
                 </p>
-                <a
-                  class="text-link"
-                  href="https://chat-web-dorents-projects.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Open Project</a
-                >
+                <div class="project-highlights" aria-label="Tech Highlights">
+                  <span>Vue.js</span>
+                  <span>Realtime UI</span>
+                  <span>Responsive</span>
+                </div>
+                <div class="project-actions">
+                  <a
+                    class="text-link"
+                    href="https://chat-web-dorents-projects.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Live Demo</a
+                  >
+                </div>
               </article>
 
-              <article class="project-card">
-                <h3>RE-Software</h3>
+              <article class="project-card reveal">
+                <div class="project-visual project-visual-invoice" aria-hidden="true">
+                  <img
+                    src="./assets/images/projects/re-software.png"
+                    alt="Screenshot der RE-Software"
+                    class="project-preview-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span>Workflow Preview</span>
+                </div>
+                <h3>Rechnungs-Software</h3>
                 <p>
                   Rechnungsverwaltung mit effizientem Workflow, sauberem Design
                   und produktivem Handling.
                 </p>
-                <a
-                  class="text-link"
-                  href="https://re-software.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Open Project</a
-                >
+                <div class="project-highlights" aria-label="Tech Highlights">
+                  <span>FastAPI</span>
+                  <span>PostgreSQL</span>
+                  <span>Dashboard UX</span>
+                </div>
+                <div class="project-actions">
+                  <a
+                    class="text-link"
+                    href="https://re-software.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Live Demo</a
+                  >
+                </div>
               </article>
 
-              <article class="project-card">
+              <article class="project-card reveal">
+                <div
+                  class="project-visual project-visual-portfolio"
+                  aria-hidden="true"
+                >
+                  <img
+                    src="./assets/images/projects/portfolio-preview.png"
+                    alt="Screenshot der Portfolio-Seite"
+                    class="project-preview-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span>Portfolio Preview</span>
+                </div>
                 <h3>Portfolio Platform</h3>
                 <p>
                   Eigene Marke mit modernem UI-System, klarer Content-Struktur
                   und professioneller Präsentation.
                 </p>
-                <a class="text-link" href="#">Current Page</a>
+                <div class="project-highlights" aria-label="Tech Highlights">
+                  <span>Modern CSS</span>
+                  <span>UX Focus</span>
+                  <span>Performance</span>
+                </div>
+                <div class="project-actions">
+                  <a class="text-link" href="#">Current Page</a>
+                </div>
               </article>
             </div>
           </section>
 
-          <section id="stack" class="section">
+          <section id="stack" class="section reveal">
             <div class="section-heading">
               <p class="eyebrow">Core Stack</p>
               <h2>Technologien & Tools</h2>
             </div>
 
             <div class="stack-grid">
-              <article class="stack-card">
+              <article class="stack-card reveal">
                 <h3>Frontend</h3>
                 <div class="tag-list">
                   <span>Vue.js</span>
@@ -131,7 +185,7 @@
                 </div>
               </article>
 
-              <article class="stack-card">
+              <article class="stack-card reveal">
                 <h3>Backend</h3>
                 <div class="tag-list">
                   <span>Python</span>
@@ -142,7 +196,7 @@
                 </div>
               </article>
 
-              <article class="stack-card">
+              <article class="stack-card reveal">
                 <h3>Auth & Platform</h3>
                 <div class="tag-list">
                   <span>Keycloak</span>
@@ -159,10 +213,11 @@
         <aside id="contact" class="sidebar">
           <article class="profile-card">
             <img
-              src="./bild.png"
+              src="./assets/images/profile.png"
               alt="Freigestelltes Portraetfoto von Dorent Rugova"
               class="profile-image"
               loading="lazy"
+              decoding="async"
             />
             <h2>Dorent Rugova</h2>
             <p class="profile-role">Frontend • Backend • Fullstack Developer</p>
@@ -195,9 +250,6 @@
       </footer>
     </div>
 
-    <script>
-      const yearElement = document.getElementById("current-year");
-      yearElement.textContent = String(new Date().getFullYear());
-    </script>
+    <script src="./js/main.js"></script>
   </body>
 </html>
