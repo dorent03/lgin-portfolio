@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dorent Rugova | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio von Dorent Rugova mit ausgewählten Projekten."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="background-glow background-glow-left" aria-hidden="true"></div>
+    <div class="background-glow background-glow-right" aria-hidden="true"></div>
+
+    <main class="page">
+      <section class="hero">
+        <span class="badge">Portfolio</span>
+        <h1>Hi, ich bin Dorent.</h1>
+        <p>
+          Ich baue moderne Webprojekte mit Fokus auf sauberes Design,
+          Performance und gute User Experience.
+        </p>
+      </section>
+
+      <section class="projects" aria-label="Projekte">
+        <article class="project-card">
+          <h2>Chat Web App</h2>
+          <p>
+            Login-basierte Chat-Anwendung mit klarem UI und schneller,
+            interaktiver Nutzerführung.
+          </p>
+          <a
+            class="project-link"
+            href="https://chat-web-dorents-projects.vercel.app/login"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Projekt öffnen
+          </a>
+        </article>
+
+        <article class="project-card">
+          <h2>RE-Software</h2>
+          <p>
+            Rechnungsverwaltung mit strukturiertem Workflow und einer
+            übersichtlichen, produktiven Oberfläche.
+          </p>
+          <a
+            class="project-link"
+            href="https://re-software.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Projekt öffnen
+          </a>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="current-year"></span> Dorent Rugova. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <script>
+      const yearElement = document.getElementById("current-year");
+      yearElement.textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>
